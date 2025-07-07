@@ -2,13 +2,20 @@ import { IoMdRemoveCircleOutline } from 'react-icons/io';
 import { FaCheck } from 'react-icons/fa';
 import { FaRegEdit } from 'react-icons/fa';
 import type { TodoType } from '../types/types';
+import { useDispatch } from 'react-redux';
+import { removeTodoById } from '../redux/todoSlice';
 
 interface TodoProps {
   todoProps: TodoType;
 }
 
 function Todo({ todoProps }: TodoProps) {
-  const { content } = todoProps;
+  const { id, content } = todoProps;
+  const dispatch = useDispatch();
+
+  const handleRemoveTodo = () => {
+    dispatch(removeTodoById(id));
+  };
 
   return (
     <div
@@ -25,7 +32,11 @@ function Todo({ todoProps }: TodoProps) {
     >
       <div>{content}</div>
       <div>
-        <IoMdRemoveCircleOutline style={{ color: 'red' }} className="icons" />
+        <IoMdRemoveCircleOutline
+          onClick={handleRemoveTodo}
+          style={{ color: 'red' }}
+          className="icons"
+        />
         <FaRegEdit style={{ color: 'blue' }} className="icons" />
       </div>
     </div>
