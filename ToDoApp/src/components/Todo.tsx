@@ -1,8 +1,15 @@
 import { IoMdRemoveCircleOutline } from 'react-icons/io';
 import { FaCheck } from 'react-icons/fa';
 import { FaRegEdit } from 'react-icons/fa';
+import type { TodoType } from '../types/types';
 
-function Todo() {
+interface TodoProps {
+  todoProps: TodoType;
+}
+
+function Todo({ todoProps }: TodoProps) {
+  const { content } = todoProps;
+
   return (
     <div
       style={{
@@ -16,7 +23,7 @@ function Todo() {
         borderRadius: '5px',
       }}
     >
-      <div>Todo-1</div>
+      <div>{content}</div>
       <div>
         <IoMdRemoveCircleOutline style={{ color: 'red' }} className="icons" />
         <FaRegEdit style={{ color: 'blue' }} className="icons" />
